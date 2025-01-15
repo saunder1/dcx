@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCX :: Digital Customer Experience</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1 class="logo">DCX</h1>
+        <nav>
+            <ul>
+                <li><a href="#">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="filler"></div>
+
+    <script>
+        document.addEventListener('scroll', function() {
+            const logo = document.querySelector('.logo');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const scale = 1 + (scrollTop / (maxScroll / 2));
+
+            if (scale <= 3) { // Limit the scale to 3 times the original size
+                logo.style.transform = `scale(${scale})`;
+            }
+        });
+    </script>
+</body>
+</html>
