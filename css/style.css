@@ -169,4 +169,8 @@ nav a:hover::after {
         flex-direction: row;
         width: 100%;
     }
+
+    .sub {
+        font-size: 1.5rem;
+    }
 }
