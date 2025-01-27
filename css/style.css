@@ -1,4 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    /* Colors */
+    --text: #1b263b;
+    --dark-blue: #3d52a0;
+    --light-blue: #7091e6;
+    --dark-gray: #8697c4;
+    --light-gray: #adbbda;
+    --white: #ede8f5;
+}
 
 * {
     padding: 0;
@@ -8,12 +18,155 @@
     font-style: normal;
 }
 
+body {
+    background-color: var(--white);
+    color: var(--text);
+}
+
+
+header {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    min-height: 10vh;
+    background-color: transparent;
+    z-index: 100;
+    padding: 0 2rem;
+}
+
 .logo {
+    font-family: "Michroma", serif;
     font-size: 5rem;
-    font-weight: 900;
-    transition: transform 0.1s ease-in-out;
+}
+
+nav {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav ul {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+nav ul li {
+    list-style: none;
+}
+
+nav a {
+    position: relative;
+    text-decoration: none;
+    color: var(--text);
+    display: inline-block;
+    padding-bottom: 4px;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--text);
+    transition: width 0.3s ease;
+    transform-origin: right center;
+}
+
+nav a:hover::after {
+    width: 100%;
+    transform-origin: left center;
+}
+
+
+.banner {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-image: url("../images/pawel-czerwinski-Aks54Wy4M_g-unsplash.jpg");
+    background-size: cover;
+}
+
+.left-col {
+    width: 50%;
+}
+
+.right-col {
+    width: 50%;
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.dcx {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.sub {
+    position: absolute;
+    font-size: 3rem;
+    font-weight: 600;
+    width: 30%;
+    bottom: 1rem;
+    left: 2.5%;
 }
 
 .filler {
     height: 100vh;
+}
+
+@media screen and (max-width: 1300px) {
+    nav {
+        width: 50%;
+    }
+
+    .logo {
+        font-size: 3rem;
+    }
+
+    .sub {
+        font-size: 2rem;
+    }
+
+    .left-col {
+        width: 25%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    nav {
+        display: none;
+    }
+
+    .left-col {
+        width: 0%;
+    }
+
+    .right-col {
+        width: 95%;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .brand-col {
+        display: flex;
+        gap: 1rem;
+        align-items: baseline;
+        flex-direction: row;
+        width: 100%;
+    }
 }
