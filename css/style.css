@@ -93,7 +93,8 @@ nav a:hover::after {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    min-height: 100dvh;
     width: 100%;
     background-image: url("../images/pawel-czerwinski-Aks54Wy4M_g-unsplash.jpg");
     background-size: cover;
