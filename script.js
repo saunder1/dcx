@@ -1,15 +1,19 @@
 gsap.registerPlugin(ScrollTrigger);
 
-gsap.to("#dcx", {
+gsap.to('.banner *', {
     scrollTrigger: {
         trigger: '.banner',
-        start: 'top 20%',
-        end: "top -10%",    // Stop animation
-    scrub: true,
-    pin: true,          // Pin #dcx in place
-    pinSpacing: false,  // Remove extra spacing below once pinned
-    markers: true  
+        start: 'top top',
+        end: 'bottom 25%',
+        scrub: true
     },
-    scale: 0.1,
-    ease: 'none'
+    opacity: 0
+});
+
+document.querySelector('.burger-menu').addEventListener('click', () => {
+    document.querySelector('.mobile').classList.toggle('active');
+});
+
+document.querySelector('.close-menu').addEventListener('click', () => {
+    document.querySelector('.mobile').classList.remove('active');
 });

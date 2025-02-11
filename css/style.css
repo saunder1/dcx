@@ -42,6 +42,10 @@ header {
 .logo {
     font-family: "Michroma", serif;
     font-size: 5rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 nav {
@@ -87,6 +91,12 @@ nav a:hover::after {
     transform-origin: left center;
 }
 
+.links {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
 
 .banner {
     position: relative;
@@ -130,11 +140,73 @@ nav a:hover::after {
     height: 100vh;
 }
 
-@media screen and (max-width: 1300px) {
-    nav {
-        width: 50%;
-    }
+.burger-menu {
+    display: none;
+}
 
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+button img {
+    width: 32px;
+    height: 32px;
+}
+
+.mobile {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    width: 100%;
+    background-color: var(--white);
+    padding: 2rem 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.mobile ul {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.mobile ul li {
+    list-style: none;
+}
+
+.mobile a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.close-menu {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.close-menu img {
+    width: 32px;
+    height: 32px;
+}
+
+.mobile.active {
+    display: flex;
+    justify-content: center;
+}
+
+
+@media screen and (max-width: 1300px) {
     .logo {
         font-size: 3rem;
     }
@@ -149,8 +221,16 @@ nav a:hover::after {
 }
 
 @media screen and (max-width: 768px) {
-    nav {
+    .burger-menu {
+        display: block;
+    }
+    
+    .links {
         display: none;
+    }
+
+    .desktop {
+        justify-content: right;
     }
 
     .left-col {

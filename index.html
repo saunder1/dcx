@@ -11,15 +11,30 @@
 <body>
     <header>
         <h1 class="logo">DCX</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home,</a></li>
-                <li><a href="about.html">Works,</a></li>
-                <li><a href="services.html">Services</a></li>
-            </ul>
-
-            <a href="contact.html">Contact</a>
+        <nav class="desktop">
+            <button class="burger-menu">
+                <img src="images/burger.svg" alt="Menu">
+            </button>
+            <div class="links">
+                <ul>
+                    <li><a href="index.html">Home,</a></li>
+                    <li><a href="about.html">Works,</a></li>
+                    <li><a href="services.html">Services</a></li>
+                </ul>
+    
+                <a href="contact.html" id="contact">Contact</a>
+            </div>
         </nav>
+        <nav class="mobile">
+            <button class="close-menu">
+                <img src="images/x.svg" alt="Close">
+            </button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">Works</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
     </header>
     
     <div class="banner">
@@ -44,10 +59,10 @@
 
     <div class="filler"></div>
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
-    <script src="script.js"></script> -->
+    <script src="script.js"></script>
 </body>
 
 </html>
