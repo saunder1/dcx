@@ -10,12 +10,13 @@
     --white: #ede8f5;
 }
 
-* {
-    padding: 0;
-    margin: 0;
+*, *:before, *:after {
+    box-sizing: border-box;
     font-family: "Raleway", serif;
     font-optical-sizing: auto;
     font-style: normal;
+    padding: 0;
+    margin: 0;
 }
 
 body {
@@ -36,7 +37,6 @@ header {
     min-height: 10vh;
     background-color: transparent;
     z-index: 100;
-    padding: 0 2rem;
 }
 
 .logo {
@@ -98,7 +98,7 @@ nav a:hover::after {
 }
 
 
-.banner {
+/* .banner {
     position: relative;
     display: flex;
     justify-content: center;
@@ -106,7 +106,7 @@ nav a:hover::after {
     min-height: 100vh;
     min-height: 100dvh;
     width: 100%;
-    background-image: url("../images/pawel-czerwinski-Aks54Wy4M_g-unsplash.jpg");
+    background-image: url("../images/monitor\ burst.png");
     background-size: cover;
 }
 
@@ -120,6 +120,56 @@ nav a:hover::after {
     justify-content: left;
     flex-direction: row;
     gap: 1rem;
+} */
+
+.banner {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Vertically center items */
+    justify-content: space-between; /* Space out children */
+    padding: 2rem; /* Add some padding */
+    position: relative; /* Needed if you want absolute positioning later */
+    min-height: 80vh; /* Give the banner some height */
+    overflow: hidden; /* Prevent content overflow */
+}
+
+.left-col {
+    flex-basis: 45%; /* Adjust width as needed */
+    z-index: 2; /* Ensure text is above image if overlapping */
+}
+
+.right-col {
+    flex-basis: 45%; /* Adjust width as needed */
+    z-index: 2; /* Ensure text is above image if overlapping */
+}
+
+.hero-picture {
+    position: absolute; /* Position relative to the banner */
+    left: 5%; /* Position from the left edge */
+    top: 50%; /* Start positioning from the vertical center */
+    transform: translateY(-50%); /* Shift up by half its height for true centering */
+    width: 40%; /* Control the image width */
+    max-width: 600px; /* Optional: prevent it getting too large */
+    height: auto; /* Maintain aspect ratio */
+    z-index: 1; /* Place it behind the text columns */
+}
+
+.hero-picture img {
+    display: block; /* Remove extra space below image */
+    width: 100%; /* Make image fill the picture container */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the entire image is visible */
+}
+
+/* Adjust column positioning if needed */
+.banner .left-col,
+.banner .right-col {
+    position: relative; /* Allow z-index to work */
+}
+
+/* Example: Push right column further right if needed */
+.banner .right-col {
+   margin-left: auto; /* Pushes it towards the right */
+   /* Or adjust flex-basis/margins */
 }
 
 .dcx {
@@ -131,7 +181,7 @@ nav a:hover::after {
     position: absolute;
     font-size: 3rem;
     font-weight: 600;
-    width: 30%;
+    width: 25%;
     bottom: 1rem;
     left: 2.5%;
 }
@@ -256,21 +306,7 @@ button img {
     color: var(--text);
 }
 
-@media screen and (max-width: 1300px) {
-    .logo {
-        font-size: 3rem;
-    }
-
-    .sub {
-        font-size: 2rem;
-    }
-
-    .left-col {
-        width: 25%;
-    }
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 945px) {
     .burger-menu {
         display: block;
     }
