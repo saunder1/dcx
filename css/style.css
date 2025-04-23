@@ -8,6 +8,7 @@
     --dark-gray: #8697c4;
     --light-gray: #adbbda;
     --white: #ede8f5;
+    --mobile-menu-actual-width: 350px;
 }
 
 *, *:before, *:after {
@@ -22,42 +23,54 @@
 body {
     background-color: var(--white);
     color: var(--text);
+    width: 90%;
+    margin: 0 auto;
 }
-
 
 header {
     position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    width: 95%;
-    min-height: 10vh;
+    margin-top: 2rem;
+    width: 90%; /* Match body width */
+    /* min-height: 10vh; */
     background-color: transparent;
     z-index: 100;
+    left: 50%; /* Center the header */
+    transform: translateX(-50%); /* Center the header */
+}
+
+.logo-container {
+    width: 50%;
 }
 
 .logo {
     font-family: "Michroma", serif;
-    font-size: 5rem;
+    font-size: clamp(3rem, 10vw, 7rem);
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    line-height: 0.7;
 }
 
-nav {
+.nav-container {
     width: 50%;
     display: flex;
+    justify-content: flex-end;
+}
+
+.desktop {
+    display: flex;
     justify-content: space-between;
+    /* align-items: center; */
+    width: 100%;
 }
 
 nav ul {
     display: flex;
     gap: 1rem;
-    align-items: center;
+    /* align-items: center; */
 }
 
 nav ul li {
@@ -77,28 +90,22 @@ nav a {
 nav a::after {
     content: "";
     position: absolute;
-    right: 0;
+    left: 0; /* Position from left */
     bottom: 0;
-    width: 0;
+    width: 100%; /* Set width to 100% */
     height: 2px;
     background-color: var(--text);
-    transition: width 0.3s ease;
-    transform-origin: right center;
+    transform: scaleX(0); /* Initially scale to 0 */
+    transform-origin: right center; /* Origin on the right */
+    transition: transform 0.3s ease; /* Transition the transform */
 }
 
 nav a:hover::after {
-    width: 100%;
-    transform-origin: left center;
+    transform: scaleX(1); /* Scale to 100% on hover */
+    transform-origin: left center; /* Set origin to left for exit */
 }
 
-.links {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-
-/* .banner {
+.banner {
     position: relative;
     display: flex;
     justify-content: center;
@@ -120,56 +127,6 @@ nav a:hover::after {
     justify-content: left;
     flex-direction: row;
     gap: 1rem;
-} */
-
-.banner {
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Vertically center items */
-    justify-content: space-between; /* Space out children */
-    padding: 2rem; /* Add some padding */
-    position: relative; /* Needed if you want absolute positioning later */
-    min-height: 80vh; /* Give the banner some height */
-    overflow: hidden; /* Prevent content overflow */
-}
-
-.left-col {
-    flex-basis: 45%; /* Adjust width as needed */
-    z-index: 2; /* Ensure text is above image if overlapping */
-}
-
-.right-col {
-    flex-basis: 45%; /* Adjust width as needed */
-    z-index: 2; /* Ensure text is above image if overlapping */
-}
-
-.hero-picture {
-    position: absolute; /* Position relative to the banner */
-    left: 5%; /* Position from the left edge */
-    top: 50%; /* Start positioning from the vertical center */
-    transform: translateY(-50%); /* Shift up by half its height for true centering */
-    width: 40%; /* Control the image width */
-    max-width: 600px; /* Optional: prevent it getting too large */
-    height: auto; /* Maintain aspect ratio */
-    z-index: 1; /* Place it behind the text columns */
-}
-
-.hero-picture img {
-    display: block; /* Remove extra space below image */
-    width: 100%; /* Make image fill the picture container */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Ensure the entire image is visible */
-}
-
-/* Adjust column positioning if needed */
-.banner .left-col,
-.banner .right-col {
-    position: relative; /* Allow z-index to work */
-}
-
-/* Example: Push right column further right if needed */
-.banner .right-col {
-   margin-left: auto; /* Pushes it towards the right */
-   /* Or adjust flex-basis/margins */
 }
 
 .dcx {
@@ -192,57 +149,103 @@ nav a:hover::after {
 
 .burger-menu {
     display: none;
-}
-
-button {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.5rem;
+    /* padding: 0.5rem;*/
+    z-index: 110;
+    transition: opacity 0.2s ease-in-out, visibility 0s linear 0.2s; /* Add transition */
 }
 
-button img {
-    width: 32px;
-    height: 32px;
+.burger-menu img {
+    width: 40px;
+    height: 40px;
 }
 
-.mobile {
-    display: none;
+.overlay {
     position: fixed;
     top: 0;
     left: 0;
-    min-height: 100vh;
-    min-height: 100dvh;
-    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 104; /* Below mobile menu (105), above page content */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, width 0s linear 0.3s, visibility 0s linear 0.3s;
+    cursor: pointer; /* Indicate it's clickable to close */
+}
+
+/* Show overlay when mobile nav is active (requires JS to add class to body) */
+body.mobile-nav-active .overlay {
+    width: calc(100vw - var(--mobile-menu-actual-width));
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease-in-out, width 0s linear 0s, visibility 0s linear 0s;
+}
+
+body.mobile-nav-active .burger-menu {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Prevent interaction when hidden */
+    transition: opacity 0.2s ease-in-out, visibility 0s linear 0s;
+}
+
+.mobile {
+    position: fixed;
+    top: 0;
+    right: 0; /* Anchor to the right */
+    left: auto; /* Ensure left is not set */
+    width: 50%; /* Occupy half the screen width */
+    max-width: 350px; /* Optional: set a max width */
+    height: 100vh; /* Full viewport height */
     background-color: var(--white);
-    padding: 2rem 0;
+    padding: 4rem 2rem 2rem 2rem;
+    box-shadow: -3px 0 10px rgba(0, 0, 0, 0.15); /* Optional: add shadow for depth */
+    transform: translateX(100%); /* Start fully off-screen to the right */
+    transition: transform 0.3s ease-in-out; /* Smooth slide transition */
+    z-index: 105; /* Keep above overlay */
+    display: flex; /* Use flex for internal layout */
     flex-direction: column;
-    align-items: center;
-    gap: 2rem;
+    align-items: flex-start; /* Align links to the left */
+    justify-content: flex-start; /* Align content to the top */
+    gap: 1.5rem;
+}
+
+.mobile.active {
+    transform: translateX(0); /* Show when active */
 }
 
 .mobile ul {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    align-items: center;
+    gap: 1.5rem; /* Space out links */
+    align-items: flex-start; /* Align links to the left */
+    width: 100%;
 }
 
 .mobile ul li {
     list-style: none;
+    width: 100%;
 }
 
 .mobile a {
     color: var(--text);
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.3rem; /* Adjust font size */
     font-weight: 600;
+    display: block; /* Make link take full width of li */
+    padding: 0.5rem 0;
 }
 
 .close-menu {
+    position: absolute;
+    top: 1.5rem; /* Position from top */
+    right: 1.5rem; /* Position from right */
     background: none;
     border: none;
     cursor: pointer;
+    z-index: 110; /* Ensure it's clickable */
+    padding: 0;
 }
 
 .close-menu img {
@@ -310,13 +313,14 @@ button img {
     .burger-menu {
         display: block;
     }
-    
-    .links {
+
+    .desktop {
         display: none;
     }
 
-    .desktop {
-        justify-content: right;
+    .nav-container {
+        justify-content: flex-end;
+        align-items: flex-start;
     }
 
     .left-col {
