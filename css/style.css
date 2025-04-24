@@ -27,6 +27,36 @@ body {
     margin: 0 auto;
 }
 
+body.mobile-nav-active::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 99; /* Below header (100) and mobile nav (110) */
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0s;
+}
+
+/* Style for the pseudo-element when nav is inactive (optional but good practice) */
+body::before {
+    content: "";
+    position: fixed; /* Keep position fixed to avoid layout shifts */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Prevent interaction when hidden */
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+}
+
 header {
     position: fixed;
     display: flex;
@@ -153,41 +183,13 @@ nav a:hover::after {
     border: none;
     cursor: pointer;
     /* padding: 0.5rem;*/
-    z-index: 110;
-    transition: opacity 0.2s ease-in-out, visibility 0s linear 0.2s; /* Add transition */
+    z-index: 105;
+    /* transition: opacity 0.2s ease-in-out, visibility 0s linear 0.2s; */
 }
 
 .burger-menu img {
     width: 40px;
     height: 40px;
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-    z-index: 104; /* Below mobile menu (105), above page content */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out, width 0s linear 0.3s, visibility 0s linear 0.3s;
-    cursor: pointer; /* Indicate it's clickable to close */
-}
-
-/* Show overlay when mobile nav is active (requires JS to add class to body) */
-body.mobile-nav-active .overlay {
-    width: calc(100vw - var(--mobile-menu-actual-width));
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.3s ease-in-out, width 0s linear 0s, visibility 0s linear 0s;
-}
-
-body.mobile-nav-active .burger-menu {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none; /* Prevent interaction when hidden */
-    transition: opacity 0.2s ease-in-out, visibility 0s linear 0s;
 }
 
 .mobile {
@@ -203,7 +205,7 @@ body.mobile-nav-active .burger-menu {
     box-shadow: -3px 0 10px rgba(0, 0, 0, 0.15); /* Optional: add shadow for depth */
     transform: translateX(100%); /* Start fully off-screen to the right */
     transition: transform 0.3s ease-in-out; /* Smooth slide transition */
-    z-index: 105; /* Keep above overlay */
+    z-index: 110; /* Keep above overlay */
     display: flex; /* Use flex for internal layout */
     flex-direction: column;
     align-items: flex-start; /* Align links to the left */
@@ -244,69 +246,13 @@ body.mobile-nav-active .burger-menu {
     background: none;
     border: none;
     cursor: pointer;
-    z-index: 110; /* Ensure it's clickable */
+    z-index: 115; /* Ensure it's clickable */
     padding: 0;
 }
 
 .close-menu img {
     width: 32px;
     height: 32px;
-}
-
-.mobile.active {
-    display: flex;
-    justify-content: center;
-}
-
-.works {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 4rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 8rem;
-}
-
-.work-row {
-    display: flex;
-    align-items: center;
-    /* gap: 4rem; */
-}
-
-.text {
-    width: 50%;
-    padding-left: 0;
-    box-sizing: border-box;
-}
-
-.picture {
-    width: 50%;
-    /* background-color: var(--light-blue); */
-    height: 600px;
-    padding-right: 5rem;
-    box-sizing: border-box;
-}
-
-.picture img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.work-text {
-    width: 50%;
-}
-
-.work-text h3 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: var(--text);
-}
-
-.work-text p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--text);
 }
 
 @media screen and (max-width: 945px) {
@@ -321,44 +267,5 @@ body.mobile-nav-active .burger-menu {
     .nav-container {
         justify-content: flex-end;
         align-items: flex-start;
-    }
-
-    .left-col {
-        width: 0%;
-    }
-
-    .right-col {
-        width: 95%;
-        justify-content: center;
-        flex-direction: column;
-    }
-
-    .brand-col {
-        display: flex;
-        gap: 1rem;
-        align-items: baseline;
-        flex-direction: row;
-        width: 100%;
-    }
-
-    .sub {
-        font-size: 1.5rem;
-    }
-
-    .work-row {
-        flex-direction: column;
-        gap: 2rem;
-    }
-
-    .work-row:nth-child(even) {
-        flex-direction: column;
-    }
-
-    .picture, .work-text {
-        width: 100%;
-    }
-
-    .picture {
-        height: 400px;
     }
 }
