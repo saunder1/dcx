@@ -17,18 +17,19 @@
         <div class="nav-container">
             <nav class="desktop">
                 <ul>
-                    <li><a href="index.html">Home,</a></li>
-                    <li><a href="about.html">About,</a></li>
-                    <li><a href="services.html">Services</a></li>
+                    <li><a class="nav-link" href="index.html">Home,</a></li>
+                    <li><a class="nav-link" href="about.html">About,</a></li>
+                    <li><a class="nav-link" href="services.html">Services</a></li>
                 </ul>
 
                 <ul>
-                    <li><a href="contact.html" id="contact">Contact</a></li>
+                    <li><a class="nav-link" href="contact.html" id="contact">Contact</a></li>
                 </ul>
                 
             </nav>
             <button class="burger-menu">
-                <img src="images/burger.svg" alt="Menu">
+                <!-- <img src="images/burger.svg" alt="Menu"> -->
+                <p class="nav-link" >Menu</p>
             </button>
         </div>
     </header>
@@ -47,8 +48,24 @@
 
     <div class="hero">
         <picture class="hero-background">
+            <source 
+                media="(max-width: 600px)" 
+                srcset="images/landing-m.webp"
+            >
+            <source 
+                media="(min-width: 601px)"
+                srcset="images/landing.webp"
+            >
             <!-- You can add <source> elements here later for different formats/sizes -->
-            <img src="images/landing.png" alt="Abstract digital background">
+            <img
+                aria-hidden="true"
+                decoding="async"
+                src="images/landing.jpg"
+                alt="new home"
+                width="2500"
+                height="1667"
+                loading="eager"
+            />
         </picture>
 
         <div class="hero-content">
@@ -56,7 +73,8 @@
 
             </div>
             <div class="hero-right">
-                <h1 class="hero-title">Websites for Your Small Business</h1>
+                <h1 class="hero-title">Websites for Your<br>Small Business</h1>
+                <p class="hero-desc">All of your website needs, from design and development, to hosting and maintenance. $135/month.</p>
             </div>
         </div>
     </div>

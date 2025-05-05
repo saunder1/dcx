@@ -2,12 +2,10 @@
 
 :root {
     /* Colors */
-    --text: #1b263b;
-    --dark-blue: #3d52a0;
-    --light-blue: #7091e6;
-    --dark-gray: #8697c4;
-    --light-gray: #adbbda;
-    --white: #ede8f5;
+    --text: #e7dfdd;
+    --accent1: #a239ca;
+    --accent2: #4717f6;
+    --background: #0e0b16;
     --mobile-menu-actual-width: 350px;
 }
 
@@ -21,7 +19,7 @@
 }
 
 body {
-    background-color: var(--white);
+    background-color: var(--background);
     color: var(--text);
     /* width: 90%;
     margin: 0 auto; */
@@ -61,17 +59,29 @@ header {
     position: fixed;
     display: flex;
     justify-content: space-between;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     width: 90%; /* Match body width */
     /* min-height: 10vh; */
     background-color: transparent;
     z-index: 100;
     left: 50%; /* Center the header */
     transform: translateX(-50%); /* Center the header */
+    padding: 1rem;
+    transition: all 0.3s ease-in-out;
+    /* mix-blend-mode: difference; */
+}
+
+header.scrolled {
+    background-color: var(--accent2);
+    margin-top: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    padding: 1rem 5vw 1.5rem 5vw;
 }
 
 .logo-container {
     width: 50%;
+    /* padding-bottom: 1.5rem; */
 }
 
 .logo {
@@ -81,9 +91,19 @@ header {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    line-height: 0.7;
+    line-height: 0.9;
     mix-blend-mode: difference;
+    transition: all 0.3s ease-in-out;
 }
+
+header.scrolled .logo {
+    mix-blend-mode: normal;
+    font-size: clamp(1.5rem, 5vw, 3.5rem);
+}
+
+/* header.scrolled .desktop {
+    align-items: center;
+} */
 
 .nav-container {
     width: 50%;
@@ -94,7 +114,7 @@ header {
 .desktop {
     display: flex;
     justify-content: space-between;
-    /* align-items: center; */
+    align-items: center;
     width: 100%;
 }
 
@@ -108,7 +128,7 @@ nav ul li {
     list-style: none;
 }
 
-nav a {
+.nav-link {
     position: relative;
     text-decoration: none;
     color: var(--text);
@@ -116,10 +136,10 @@ nav a {
     padding-bottom: 4px;
     font-weight: 600;
     font-size: 1.2rem;
-    mix-blend-mode: lighten;
+    transition: all 0.3s ease-in-out;
 }
 
-nav a::after {
+.nav-link::after {
     content: "";
     position: absolute;
     left: 0; /* Position from left */
@@ -132,7 +152,7 @@ nav a::after {
     transition: transform 0.3s ease; /* Transition the transform */
 }
 
-nav a:hover::after {
+.nav-link:hover::after {
     transform: scaleX(1); /* Scale to 100% on hover */
     transform-origin: left center; /* Set origin to left for exit */
 }
@@ -160,7 +180,7 @@ nav a:hover::after {
     width: 50%; /* Occupy half the screen width */
     max-width: 350px; /* Optional: set a max width */
     height: 100vh; /* Full viewport height */
-    background-color: var(--white);
+    background-color: var(--background);
     padding: 4rem 2rem 2rem 2rem;
     box-shadow: -3px 0 10px rgba(0, 0, 0, 0.15); /* Optional: add shadow for depth */
     transform: translateX(100%); /* Start fully off-screen to the right */
@@ -216,7 +236,7 @@ nav a:hover::after {
 }
 
 .hero {
-    position: relative; /* Needed for absolute positioning of children */
+    /* position: relative; */
     min-height: 100vh; /* Full viewport height */
     min-height: 100dvh; /* Dynamic viewport height (better for mobile) */
     overflow: hidden; /* Prevent content overflow issues */
@@ -243,8 +263,8 @@ nav a:hover::after {
     width: 100%;
     height: 100%;
     display: flex;
-    position: relative;
-    z-index: 1;
+    /* position: relative;
+    z-index: 1; */
 }
 
 .hero-left {
@@ -254,13 +274,21 @@ nav a:hover::after {
 .hero-right {
     width: 50%;
     display: flex;
+    flex-direction: column;
+    gap: 1rem;
     height: 100%;
     align-items: flex-start;
     padding-top: 30vh;
 }
 
 .hero-title {
-    
+    font-size: clamp(2rem, 10vw, 3rem);
+}
+
+.hero-desc {
+    font-size: clamp(1rem, 5vw, 1.5rem);
+    font-weight: 300;
+    width: clamp(20ch, 80%, 35ch);
 }
 
 .filler {
