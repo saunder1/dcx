@@ -18,22 +18,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('header');
 
     // Header scroll effect
-    const toggleHeaderClass = () => {
-        if (window.scrollY > 10 && window.innerWidth > 945) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    };
+    // const toggleHeaderClass = () => {
+    //     if (window.scrollY > 10 && window.innerWidth > 945) {
+    //         header.classList.add('scrolled');
+    //     } else {
+    //         header.classList.remove('scrolled');
+    //     }
+    // };
 
     // Initial check in case page is loaded scrolled down
-    toggleHeaderClass();
+    // toggleHeaderClass();
     
     // Add scroll event listener
-    window.addEventListener('scroll', toggleHeaderClass);
+    // window.addEventListener('scroll', toggleHeaderClass);
     
     // Add resize event listener to handle window resizing
-    window.addEventListener('resize', toggleHeaderClass);
+    // window.addEventListener('resize', toggleHeaderClass);
 
     const openMobileMenu = () => {
         mobileNav.classList.add('active');

@@ -10,26 +10,19 @@
 
 <body>
     <header>
-        <div class="logo-container">
-            <h1 class="logo">DCX</h1>
-        </div>
-        
+        <h1 class="logo">DCX</h1>
+
         <div class="nav-container">
             <nav class="desktop">
                 <ul>
                     <li><a class="nav-link" href="index.html">Home,</a></li>
                     <li><a class="nav-link" href="about.html">About,</a></li>
-                    <li><a class="nav-link" href="services.html">Services</a></li>
-                </ul>
-
-                <ul>
+                    <li><a class="nav-link" href="services.html">Services,</a></li>
                     <li><a class="nav-link" href="contact.html" id="contact">Contact</a></li>
                 </ul>
-                
             </nav>
             <button class="burger-menu">
-                <!-- <img src="images/burger.svg" alt="Menu"> -->
-                <p class="nav-link" >Menu</p>
+                <p class="nav-link">Menu</p>
             </button>
         </div>
     </header>
@@ -46,40 +39,33 @@
         </ul>
     </nav>
 
-    <div class="hero">
-        <picture class="hero-background">
-            <source 
-                media="(max-width: 600px)" 
-                srcset="images/landing-m.webp"
-            >
-            <source 
-                media="(min-width: 601px)"
-                srcset="images/landing.webp"
-            >
-            <!-- You can add <source> elements here later for different formats/sizes -->
-            <img
-                aria-hidden="true"
-                decoding="async"
-                src="images/landing.jpg"
-                alt="new home"
-                width="2500"
-                height="1667"
-                loading="eager"
-            />
-        </picture>
-
+    <section class="hero">
         <div class="hero-content">
-            <div class="hero-left">
+            <h1>Small Business Website Designer</h1>
+            <p>One stop shop for all your basic website needs.</p>
+        </div>
+        <div class="hero-animation">
+            <div class="ball">
 
-            </div>
-            <div class="hero-right">
-                <h1 class="hero-title">Websites for Your<br>Small Business</h1>
-                <p class="hero-desc">All of your website needs, from design and development, to hosting and maintenance. $135/month.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="filler"></div>
+    <div class="about">
+        <div class="about-content">
+            <div class="about-tile">
+
+            </div>
+        </div>
+        <div class="about-intro">
+            <h3 class="about-header">What We Do</h3>
+            <h2 class="about-title">Never Worry About Your Website Again</h2>
+            <p class="about-desc">At DCX, we specialize in small business web design and development. Every line of code
+                is hand written to ensure the best performance and to have the best search engine optimization which is
+                key to bringing more customers to your business. </p>
+        </div>
+
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
